@@ -17,7 +17,7 @@ func Run() {
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
-	total, podium := 0, max(0, 0, 0, 0) // []int{0, 0, 0}
+	total, podium := 0, max(0, 0, 0, 0)
 	for scanner.Scan() {
 		line := scanner.Text()
 
