@@ -26,25 +26,34 @@ func Run() {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		// so aline is going to be a rucksack
+		//group
 		line := scanner.Text()
+		scanner.Scan()
+		line2 := scanner.Text()
+		scanner.Scan()
+		line3 := scanner.Text()
 		// halves DmptngtF   |||  wvvMmwmm
 		// i want to check each character?
-		mid := len(line) / 2
-		comp1, comp2 := line[:mid], line[mid:]
-		fmt.Println(comp1)
-		fmt.Println(comp2)
-
-		for _, char := range comp1 {
-			if strings.Contains(comp2, string(char)) {
-				// so if char is below 91 then we can subtract 38..
-				// if char is above... we subtract 96
-				if char > 90 {
-					total -= 96
-				} else {
-					total -= 38
+		// mid := len(line) / 2
+		// comp1, comp2 := line[:mid], line[mid:]
+		cnt := true
+		for _, char := range line {
+			if cnt {
+				if strings.Contains(line2, string(char)) {
+					// so if char is below 91 then we can subtract 38..
+					// if char is above... we subtract 96
+					if strings.Contains(line3, string(char)) {
+						// the third contains it too weve found our char
+						if char > 90 {
+							total -= 96
+						} else {
+							total -= 38
+						}
+						total += int(char)
+						// fmt.Println(string(char))
+						cnt = false
+					}
 				}
-				total += int(char)
-				break
 			}
 		}
 	}
