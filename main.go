@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/guykachur/adventofcode2022/day5"
+	"github.com/guykachur/adventofcode2022/day6"
 )
 
 func main() {
@@ -13,5 +13,6 @@ func main() {
 	// day3.Run()
 	// fmt.Println("\nDay 4: ")
 	// day4.Run()
-	day5.Run()
+	// day5.Run()
+	day6.Run()
 }
