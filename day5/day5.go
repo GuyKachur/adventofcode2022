@@ -18,7 +18,6 @@ func Run() {
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
-	total := 0
 	pic := []string{}
 	for scanner.Scan() {
 		line := scanner.Text()
@@ -54,7 +53,7 @@ func Run() {
 	}
 
 	for scanner.Scan() {
-		line := scanner.Text()
+		// line := scanner.Text()
 		lines := strings.Split(scanner.Text(), " ")
 		limitString, startString, destString := lines[1], lines[3], lines[5]
 		limit, _ := strconv.Atoi(limitString)
@@ -63,22 +62,17 @@ func Run() {
 		//o index
 		start--
 		dest--
-		count := 0
-		for count < limit {
-			//this is just stupidly messy for debugging
-			startStack := stacks[start]
-			destStack := stacks[dest]
-			pop := startStack[len(startStack)-1] // the last one
-			startStack = startStack[:len(startStack)-1]
-			//put startstack back in stacks
-			stacks[start] = startStack
 
-			//now put pop on deststack and put into stacks
-			stacks[dest] = append(destStack, pop)
-			count++
-		}
+		// start becomes start without the last limit elements
+		// dest becomes dest with the last three elements appended
+		startStack := stacks[start]
+		crane := startStack[len(startStack)-limit:]
+		destStack := append(stacks[dest], crane...)
 
-		total += len(line)
+		stacks[dest] = destStack
+		//then start can just have those last elements shaved off
+		stacks[start] = startStack[:len(stacks[start])-limit]
+
 	}
 	if err = scanner.Err(); err != nil {
 		fmt.Println(err)
