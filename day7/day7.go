@@ -9,10 +9,9 @@ import (
 )
 
 type Node struct {
-	isFile bool
-	size   int
-	name   string
-	//if its a directory it has children
+	isFile   bool
+	size     int
+	name     string
 	children map[string]*Node
 	parent   *Node
 }
@@ -116,17 +115,11 @@ func Run() {
 	}
 
 	total := bfs(root)
-
-	// so the next part is to calculate the smallest directory you could delete to get at least 30000000 free space for the update
-	// so instead return the node that deletes the smallest
-
 	fmt.Println(fmt.Sprintf("\nDay %d: %d\n", num, total))
 
 }
 
-// so the directory itself can be under... meaning nested directories count...
 func bfs(root *Node) int {
-	//make a queue... as long as that queue isnt done youre not done
 	q := []*Node{root}
 	total := root.size
 	unused := 70000000 - total
@@ -141,7 +134,6 @@ func bfs(root *Node) int {
 		// if pop.size <= 100000 {
 		// 	//add to total, move on
 		// 	total += pop.size
-		// 	//we dont add children here because weve accounted for them
 		// }
 
 		//part 2
@@ -152,12 +144,11 @@ func bfs(root *Node) int {
 				small = pop
 			}
 		}
-		// else {
-		// if its over we want to add its children
+
 		for _, v := range pop.children {
 			q = append(q, v)
 		}
-		// }
+
 	}
 	return small.size
 }
