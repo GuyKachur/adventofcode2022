@@ -10,7 +10,8 @@ import (
 
 // https://adventofcode.com/2022/day/1
 func Run() {
-	file, err := os.Open("day1/input.txt")
+	num := 0
+	file, err := os.Open(fmt.Sprintf("day%d/input.txt", num))
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -35,11 +36,11 @@ func Run() {
 
 	max := 0
 	for i := 0; i < len(podium); i++ {
-		fmt.Println(podium[i])
+		// fmt.Println(podium[i])
 		max += podium[i]
 	}
 
-	fmt.Printf("Max calories: %d \n", max)
+	fmt.Println(fmt.Sprintf("\nDay %d: %d\n", num, max))
 
 }
 

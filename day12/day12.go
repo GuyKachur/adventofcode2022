@@ -50,8 +50,7 @@ func Run() {
 			}
 		}
 	}
-	fmt.Println(fmt.Sprintf("\nDay %d: %d\n", num, shortest))
-	fmt.Println(fmt.Sprintf("New Start: [%d,%d]\n", start[0], start[1]))
+	fmt.Println(fmt.Sprintf("\nDay %d: %d from [%d,%d]\n", num, shortest, start[0], start[1]))
 
 }
 

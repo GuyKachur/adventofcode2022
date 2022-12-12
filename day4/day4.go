@@ -9,12 +9,8 @@ import (
 )
 
 func Run() {
-
-	// 71-97,71-72
-	// 60-97,20-95
-	// 20-59,58-59
-
-	file, err := os.Open("day4/input.txt")
+	num := 4
+	file, err := os.Open(fmt.Sprintf("day%d/input.txt", num))
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -23,19 +19,14 @@ func Run() {
 	scanner := bufio.NewScanner(file)
 	total := 0
 	for scanner.Scan() {
-		//fix input
 		var times = make([][]int, 0)
 		lines := strings.Split(scanner.Text(), ",")
-		//71-97
 		for _, line := range lines {
 			timestrings := strings.Split(line, "-")
 			start, _ := strconv.Atoi(timestrings[0])
 			end, _ := strconv.Atoi(timestrings[1])
 			times = append(times, []int{start, end})
 		}
-		// so we have an int[] of int[]s
-		// and im trying to count how many pairs have an overlap
-		//overlap
 		if fullyOverlap(times[0], times[1]) {
 			total += 1
 		}
@@ -44,7 +35,7 @@ func Run() {
 	if err = scanner.Err(); err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(total)
+	fmt.Println(fmt.Sprintf("\nDay %d: %d\n", num, total))
 
 }
 func fullyOverlap(a, b []int) bool {

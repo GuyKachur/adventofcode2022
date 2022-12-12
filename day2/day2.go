@@ -111,7 +111,8 @@ func round(opponent, mine string) int {
 }
 
 func Run() {
-	file, err := os.Open("day2/input.txt")
+	num := 2
+	file, err := os.Open(fmt.Sprintf("day%d/input.txt", num))
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -127,5 +128,5 @@ func Run() {
 		fmt.Println(err)
 	}
 
-	fmt.Println(total)
+	fmt.Println(fmt.Sprintf("\nDay %d: %d\n", num, total))
 }
